@@ -1,15 +1,149 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BoulderBikeTour</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+  <%= render "shared/head" %>
 
   <body>
-    <%= yield %>
+
+    <div class="top-background">
+      <div class="overflow"></div>
+      <section id="header">
+
+        <div class="container">
+          
+          <div class="row">
+            <div class="col text-center">
+              <a class="logo" href="/">
+                <img src="/images/logo.svg" class="">
+              </a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col text-center">
+              <ul class="top-menu">
+                <li><a href="#about">about</a></li>
+                <li><a href="#riders">riders</a></li>
+                <li><a href="#riders-map">locations</a></li>
+                <li><%= link_to "photos", root_path %></li>
+                <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "contact", root_path %></li>
+              </ul>
+            </div>
+          </div>
+
+
+          
+        </div>
+      </section>
+
+      <section id="top-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <span class="line1">
+                Get your stuff packed and come to the
+              </span>
+              <span class="line2">
+                Boulder Bike Tour
+              </span>
+              <span class="line3">
+                The 2020 edition
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <section id="about">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 about-background">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 text-center about-content">
+                  <h2>About</h2>
+                  <h1>The Tour</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut aliquam purus sit amet luctus venenatis lectus. Dignissim diam quis enim lobortis scelerisque fermentum dui faucibus.
+                      Laoreet sit amet cursus sit amet dictum sit amet. Sed odio morbi quis commodo odio aenean sed. 
+                     
+                  </p>
+                </div>
+                <div class="col-md-6"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="riders">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3" id="riders-list-place">
+            Loading...
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="riders-map">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2" id="riders-map-place">
+            Loading...
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="photos">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2" id="photos-map-place">
+            <h2>Photos</h2>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contest">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <h2>Contest</h2>
+            <p>We need your help. Please ....</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <h2>Contact - footer</h2>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div>
+      <%= yield %>
+    </div>
+
+
+
+
   </body>
 </html>

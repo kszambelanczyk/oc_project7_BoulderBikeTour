@@ -1,0 +1,9 @@
+json.(rider,
+  :id,
+  :first_name,
+  :last_name,
+  :city,
+  :state,
+  :lat,
+  :lng
+  )
