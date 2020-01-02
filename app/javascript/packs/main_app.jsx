@@ -2,13 +2,14 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-// import PropTypes from 'prop-types'
+import React from 'react';
+import ReactDOM from 'react-dom';
+// import PropTypes from 'prop-types';
 
-import RidersList from './components/RidersList'
-import RidersMap from './components/RidersMap'
-import Photos from './components/Photos'
+import RidersList from './components/RidersList';
+import RidersMap from './components/RidersMap';
+import Photos from './components/Photos';
+import Counter from './components/Counter';
 
 // const Hello = props => (
 //   <div>Hello {props.name}!</div>
@@ -40,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Photos />,
     document.getElementById('photos-map-place'),
+  )
+
+  ReactDOM.render(
+    <Counter />,
+    document.getElementById('counter-app'),
   )
 
 })
