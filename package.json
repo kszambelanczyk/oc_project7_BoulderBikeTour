@@ -24,6 +24,7 @@
     "react-grid-gallery": "^0.5.5",
     "react-leaflet": "^2.6.1",
     "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
     "simplebar-react": "^2.1.0",
     "turbolinks": "^5.2.0"
   },

@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import userIcon from '@iconify/icons-el/user';
 import mapMarker from '@iconify/icons-mdi/map-marker';
 
-import 'simplebar/dist/simplebar.min.css';
+// import 'simplebar/dist/simplebar.min.css';
 
 class RidersList extends React.Component {
   state = {
