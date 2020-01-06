@@ -279,7 +279,7 @@ section#riders {
 
 section#riders-map {
     .leaflet-container {
-        height: 400px;
+        height: 500px;
     }
 
     #riders-map-place {
@@ -297,7 +297,7 @@ section#photos {
     background-color: #f9f9f9;
     padding: 70px 0 80px 0;
     h2{
-        margin: 00px 0 30px 0;
+        margin: 0px 0 30px 0;
         text-align: center;
     }
     a {
@@ -333,9 +333,10 @@ section#photos {
 }
 
 section#contest {
+    padding: 70px 0 80px 0;
     background-color: #d6d8ad;
     h2{
-        margin: 70px 0 30px 0;
+        margin: 0px 0 30px 0;
         text-align: center;
     }
 }
@@ -359,4 +360,20 @@ section#contact {
     span {
         font-size: 1.8rem;
     }
+}
+
+.submit-button {
+    margin-bottom: 10px;
+    background-color: #555555;
+    color: white;
+    border: 0;
+    padding: 3px 10px;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.success-message {
+    text-align: center;
+    color: #007d00;
 }

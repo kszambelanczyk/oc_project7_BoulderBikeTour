@@ -10,31 +10,27 @@ import RidersList from './components/RidersList';
 import RidersMap from './components/RidersMap';
 import Photos from './components/Photos';
 import Counter from './components/Counter';
+import Contest from './components/Contest';
 
-// const Hello = props => (
-//   <div>Hello {props.name}!</div>
-// )
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import reducer from './redux/reducers';
 
-// Hello.defaultProps = {
-//   name: 'David'
-// }
+const store = createStore(reducer);
 
-// Hello.propTypes = {
-//   name: PropTypes.string
-// }
-
-// const Hello2 = () => (
-//   <div>Hello2!</div>
-// )
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <RidersList />,
+    <Provider store={store}>
+      <RidersList />
+    </Provider>,
     document.getElementById('riders-list-place'),
   )
 
   ReactDOM.render(
-    <RidersMap />,
+    <Provider store={store}>
+      <RidersMap />
+    </Provider>,
     document.getElementById('riders-map-place'),
   )
 
@@ -46,6 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Counter />,
     document.getElementById('counter-app'),
+  )
+
+  ReactDOM.render(
+    <Contest />,
+    document.getElementById('contest-place'),
   )
 
 })

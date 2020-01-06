@@ -1,23 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import SimpleBar from 'simplebar-react';
 import { Icon } from '@iconify/react';
 import userIcon from '@iconify/icons-el/user';
 import mapMarker from '@iconify/icons-mdi/map-marker';
+import { setRiders, showLocation } from '../redux/actions';
 
 // import 'simplebar/dist/simplebar.min.css';
 
 class RidersList extends React.Component {
   state = {
-    riders: [],
-    currentRider: null,
+    // riders: [],
+    currentRider: null
   };
 
   componentDidMount() {
     axios.get(`/api/riders`)
       .then(res => {
-        const {riders} = res.data;
-        this.setState({ riders });
+        const {riders, bounds} = res.data;
+        // this.setState({ riders });
+        this.props.setRiders([...riders],{...bounds});
       });
   }
 
@@ -27,8 +30,11 @@ class RidersList extends React.Component {
   }
 
   riderPositionClicked = (r,e) => {
-    console.log(`posiotion of ${r.first_name}`)
     e.preventDefault()
+
+    let mapEl = document.getElementById("riders-map");
+    mapEl.scrollIntoView();
+    this.props.showLocation(r.id)
   }
 
   resetSelectedRider = () => {
@@ -36,7 +42,8 @@ class RidersList extends React.Component {
   }  
 
   render() {
-    const { riders, currentRider } = this.state;
+    const { riders } = this.props;
+    const { currentRider } = this.state;
     // console.log(currentRider);
     const ridersRows = riders.map((r)=> 
       <div key={r.id} className="riders-row">
@@ -94,4 +101,18 @@ class RidersList extends React.Component {
   }
 }
 
-export default RidersList;
+
+const mapStateToProps = state => {
+  return {
+    riders: state.riders
+  }  
+}
+const mapDispatchToProps = dispatch => ({
+  setRiders: (riders,bounds) => dispatch(setRiders(riders,bounds)),
+  showLocation: (riderId) => dispatch(showLocation(riderId))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RidersList);
