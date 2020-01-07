@@ -80,7 +80,7 @@ class Contest extends React.Component {
     return (
       <>
         <h2>Contest</h2>
-        <p>Please help us with choosing The Boulder Bike Tour slogan. Fill your proposition in form below. Thanks!</p>
+        <p>Please help us with choosing The Boulder Bike Tour slogan. Fill your proposition in form below. Thank you!</p>
         <Formik
           initialValues={ initialState }
           validationSchema={ContestSchema}
