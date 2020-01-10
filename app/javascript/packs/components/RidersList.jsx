@@ -12,7 +12,9 @@ import { setRiders, showLocation } from '../redux/actions';
 class RidersList extends React.Component {
   state = {
     // riders: [],
-    currentRider: null
+    currentRider: null,
+    search: '',
+    filteredRiders: [],
   };
 
   componentDidMount() {
@@ -20,13 +22,14 @@ class RidersList extends React.Component {
       .then(res => {
         const {riders, bounds} = res.data;
         // this.setState({ riders });
-        this.props.setRiders([...riders],{...bounds});
+        this.props.setRiders([...riders], {...bounds});
+        this.setState(() => ({ filteredRiders: [...riders] }));
       });
   }
 
   riderClicked = (r,e) => {
     e.preventDefault()
-    this.setState(prevState => ({currentRider: r}))
+    this.setState(prevState => ({ currentRider: r }))
   }
 
   riderPositionClicked = (r,e) => {
@@ -38,18 +41,29 @@ class RidersList extends React.Component {
   }
 
   resetSelectedRider = () => {
-    this.setState(prevState => ({currentRider: null}))
+    this.setState(prevState => ({ currentRider: null }))
   }  
 
-  render() {
+  searchChange = (e) => {
+    this.setState({search: e.target.value});
+    this.filterRiders(e.target.value)
+  }
+
+  filterRiders = (find) => {
     const { riders } = this.props;
-    const { currentRider } = this.state;
+    const filteredRiders = riders.filter((el) => (`${el.first_name} ${el.last_name}`.toLowerCase().includes(find.toLowerCase())));
+    this.setState(() => ({ filteredRiders: filteredRiders }));
+  }
+
+  render() {
+    const { riders:allRiders } = this.props;
+    const { currentRider, search, filteredRiders:riders } = this.state;
     // console.log(currentRider);
     const ridersRows = riders.map((r)=> 
       <div key={r.id} className="riders-row">
         <div>{r.id}</div>
-        <div><a onClick={(e)=> {this.riderClicked(r,e)}}>{r.first_name} {r.last_name}</a></div>
-        <div><a onClick={(e)=> {this.riderPositionClicked(r,e)}}><Icon icon={mapMarker} /></a></div>
+        <div><a onClick={(e) => {this.riderClicked(r,e)}}>{r.first_name} {r.last_name}</a></div>
+        <div><a onClick={(e) => {this.riderPositionClicked(r,e)}}><Icon icon={mapMarker} /></a></div>
       </div>
     );
 
@@ -67,7 +81,7 @@ class RidersList extends React.Component {
             {currentRider.city}, {currentRider.state}
           </p>
           <p>
-          <a onClick={(e)=> {this.riderPositionClicked(currentRider,e)}}>show on map</a>
+          <a onClick={(e) => {this.riderPositionClicked(currentRider,e)}}>show on map</a>
           </p>
         </div>
       );
@@ -81,10 +95,10 @@ class RidersList extends React.Component {
         <div className="parent-container">
           <div className={`riders-wrapper ${currentRider ? "hide" : "active"}`}>
             <div className="list-header">
-              <div>Participants: {riders.length}</div>
-              <div><input type="text" placeholder="Find"/></div>
+              <div>Participants: {allRiders.length}</div>
+              <div><input type="text" placeholder="Find" value={search} onChange={this.searchChange}/></div>
             </div>
-            <SimpleBar style={{ maxHeight: 400 }} className="riders-list-wrapper">
+            <SimpleBar style={{ maxHeight: 400, minHeight: 400 }} className="riders-list-wrapper">
               <div className="riders-grid">
                   {ridersRows}
               </div>

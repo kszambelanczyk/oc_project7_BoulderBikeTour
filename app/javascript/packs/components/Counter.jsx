@@ -1,5 +1,4 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import moment from 'moment';
 
 class Counter extends React.Component {

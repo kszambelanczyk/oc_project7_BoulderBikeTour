@@ -68,7 +68,7 @@ class Contest extends React.Component {
 
   render() {
     const { successfullySubmitted, isSubmitting } = this.state;
-    console.log(isSubmitting);
+    // console.log(isSubmitting);
 
     let successInfo = <div></div>;
     if (successfullySubmitted) {
