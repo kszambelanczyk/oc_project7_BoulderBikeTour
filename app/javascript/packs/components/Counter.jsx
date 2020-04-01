@@ -3,7 +3,7 @@ import moment from 'moment';
 
 class Counter extends React.Component {
   state = {
-    starttime: moment([2020,3,1]),
+    starttime: moment([2020,6,1]),
     showCounter: true,
     seconds: 0,
     minutes: 0,

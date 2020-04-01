@@ -44,7 +44,7 @@ class Photos extends React.Component {
   fillImages = (data) => {
     this.setState(() => ({
       images: data.photo.map((item)=>({
-        src: item.url_l,
+        src: item.url_l || item.url_s,
         thumbnail: item.url_s,
         thumbnailWidth: item.width_s,
         thumbnailHeight: item.height_s
